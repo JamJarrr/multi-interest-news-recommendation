@@ -19,6 +19,17 @@ data/raw/
 
 Only source code, configuration, documentation, and compact result summaries should be committed. Raw data, cached news embeddings, checkpoints, and large generated files remain local.
 
+## Prepare and audit the data
+
+From the repository root, install the dependencies and run:
+
+```powershell
+python -m pip install -r requirements.txt
+python -m src.data.prepare_mind --root .
+```
+
+The command validates the schemas, builds a combined news catalog, splits the official training impressions by time into model training and validation sets, keeps the official development impressions as the final test set, and writes compressed CSV files under `data/processed/` plus compact audit summaries under `results/`.
+
 ## Planned baselines
 
 - B0: frozen news embeddings, masked mean history pooling, and cosine similarity.
