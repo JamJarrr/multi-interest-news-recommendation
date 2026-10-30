@@ -1,0 +1,67 @@
+{
+  "model": "B1",
+  "description": "shared learned projection + last-50 mean pooling + cosine",
+  "created_at_utc": "2026-10-30T14:09:49.231207+00:00",
+  "configuration": {
+    "seed": 3407,
+    "projection_dim": 64,
+    "max_history": 50,
+    "negatives": 4,
+    "batch_size": 1024,
+    "epochs": 5,
+    "patience": 2,
+    "learning_rate": 0.001,
+    "device": "cpu"
+  },
+  "embedding_cache": {
+    "created_at_utc": "2026-10-30T14:05:08.859854+00:00",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "text_template": "title [SEP] abstract; title only when abstract is blank",
+    "normalized": true,
+    "dtype": "float32",
+    "rows": 65238,
+    "dimension": 384,
+    "catalog_sha256": "0cae070c74993f774609063ab0834738d784029f3642b05375356b758d92c17d"
+  },
+  "training_samples": 187856,
+  "trainable_parameters": 24640,
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.4747382389462513,
+      "validation_ndcg_at_10": 0.36288900798041135
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.4489106684923172,
+      "validation_ndcg_at_10": 0.36036410311676265
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.4432549424793408,
+      "validation_ndcg_at_10": 0.36034778736418527
+    }
+  ],
+  "best_validation_ndcg_at_10": 0.36288900798041135,
+  "metrics": {
+    "validation": {
+      "impressions": 31393,
+      "ndcg_at_5": 0.3016278002680189,
+      "ndcg_at_10": 0.36288900798041135,
+      "recall_at_10": 0.6017926580556716,
+      "minority_recall_at_10_user_macro": 0.49518355124821173,
+      "minority_target_users": 6650,
+      "minority_positive_targets": 13779
+    },
+    "test": {
+      "impressions": 73152,
+      "ndcg_at_5": 0.32095572370059894,
+      "ndcg_at_10": 0.38569794004607794,
+      "recall_at_10": 0.6420862413238413,
+      "minority_recall_at_10_user_macro": 0.5444314420700195,
+      "minority_target_users": 15539,
+      "minority_positive_targets": 31126
+    }
+  },
+  "elapsed_seconds": 59.35458720009774
+}

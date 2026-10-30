@@ -1,0 +1,38 @@
+{
+  "model": "B0",
+  "description": "frozen normalized news embeddings + last-50 mean pooling + cosine",
+  "created_at_utc": "2026-10-30T14:05:41.722348+00:00",
+  "configuration": {
+    "max_history": 50
+  },
+  "embedding_cache": {
+    "created_at_utc": "2026-10-30T14:05:08.859854+00:00",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "text_template": "title [SEP] abstract; title only when abstract is blank",
+    "normalized": true,
+    "dtype": "float32",
+    "rows": 65238,
+    "dimension": 384,
+    "catalog_sha256": "0cae070c74993f774609063ab0834738d784029f3642b05375356b758d92c17d"
+  },
+  "metrics": {
+    "validation": {
+      "impressions": 31393,
+      "ndcg_at_5": 0.31390927446794126,
+      "ndcg_at_10": 0.3730096408738492,
+      "recall_at_10": 0.6073966856584623,
+      "minority_recall_at_10_user_macro": 0.5023396280187814,
+      "minority_target_users": 6650,
+      "minority_positive_targets": 13779
+    },
+    "test": {
+      "impressions": 73152,
+      "ndcg_at_5": 0.33202449503489406,
+      "ndcg_at_10": 0.3917857371464699,
+      "recall_at_10": 0.6385821437597368,
+      "minority_recall_at_10_user_macro": 0.5379491782569994,
+      "minority_target_users": 15539,
+      "minority_positive_targets": 31126
+    }
+  }
+}
