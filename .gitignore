@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MIND data and generated artifacts
+data/raw/**
+data/processed/**
+cache/**
+checkpoints/**
+results/runs/**
+
+# Large model/data files
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.parquet
+
+# Local review files
+.codex_doc_review/
+
+# Keep documentation inside ignored data directories
+!data/raw/README.md
+!data/processed/README.md
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
