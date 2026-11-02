@@ -1,0 +1,10 @@
+{
+  "MINDsmall_train.zip": {
+    "bytes": 52953372,
+    "sha256": "a966e5138ad103376e9817e02395719bf1c62ec56e6e98c30d46fbb991a7fafa"
+  },
+  "MINDsmall_dev.zip": {
+    "bytes": 30946172,
+    "sha256": "b315cde1c9b9d45008b5a7c4b2e1f87647659f09f74892ae3899c0005d5d6155"
+  }
+}

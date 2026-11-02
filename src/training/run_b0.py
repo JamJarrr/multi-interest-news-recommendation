@@ -21,6 +21,7 @@ from src.training.common import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path("."))
+    parser.add_argument("--results-dir", type=Path, default=Path("results"))
     parser.add_argument("--max-history", type=int, default=50)
     return parser.parse_args()
 
@@ -54,8 +55,9 @@ def main() -> None:
         "embedding_cache": cache_metadata,
         "metrics": metrics,
     }
-    write_json(root / "results" / "b0_metrics.json", payload)
+    write_json(root / args.results_dir / "b0_metrics.json", payload)
 
 
 if __name__ == "__main__":
     main()
+

@@ -1,0 +1,70 @@
+{
+  "model": "B1",
+  "description": "shared learned projection + last-50 mean pooling + cosine",
+  "created_at_utc": "2026-10-31T17:49:40.765885+00:00",
+  "configuration": {
+    "seed": 42,
+    "projection_dim": 64,
+    "max_history": 50,
+    "negatives": 4,
+    "batch_size": 1024,
+    "epochs": 5,
+    "patience": 2,
+    "learning_rate": 0.001,
+    "device": "cpu"
+  },
+  "embedding_cache": {
+    "created_at_utc": "2026-10-31T17:47:39.602462+00:00",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "text_template": "title [SEP] abstract; title only when abstract is blank",
+    "resolved_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "embeddings_sha256": "02eb86de40b30d30f68acaad4655f5a5e07fa82640abe30d9d7a73af1915a151",
+    "catalog_content_sha256": "c78e07ac715e97263da15a3871d03b1a0dc1b3cdde913c2f0839c58cfc467d12",
+    "normalized": true,
+    "dtype": "float32",
+    "rows": 65238,
+    "dimension": 384,
+    "catalog_sha256": "f83ff59df3a2c2c7995496a24f4ac7b6418c5d71f1474113f43fdd91b9082dc2"
+  },
+  "training_samples": 187856,
+  "trainable_parameters": 24640,
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.4747370721205422,
+      "validation_ndcg_at_10": 0.3648275994012196
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.448409507456033,
+      "validation_ndcg_at_10": 0.36046982250543286
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.442561339425004,
+      "validation_ndcg_at_10": 0.35896368989252175
+    }
+  ],
+  "best_validation_ndcg_at_10": 0.3648275994012196,
+  "metrics": {
+    "validation": {
+      "impressions": 31393,
+      "ndcg_at_5": 0.30467964394898484,
+      "ndcg_at_10": 0.3648275994012196,
+      "recall_at_10": 0.6002132702008367,
+      "minority_recall_at_10_user_macro": 0.49308778945848597,
+      "minority_target_users": 6650,
+      "minority_positive_targets": 13779
+    },
+    "test": {
+      "impressions": 73152,
+      "ndcg_at_5": 0.323919172659595,
+      "ndcg_at_10": 0.38827177841197535,
+      "recall_at_10": 0.6461561753417523,
+      "minority_recall_at_10_user_macro": 0.5450529535571873,
+      "minority_target_users": 15539,
+      "minority_positive_targets": 31126
+    }
+  },
+  "elapsed_seconds": 44.98268384799303
+}

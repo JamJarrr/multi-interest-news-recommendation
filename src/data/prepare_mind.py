@@ -172,6 +172,7 @@ def audit_behaviors(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path("."))
+    parser.add_argument("--results-dir", type=Path, default=Path("results"))
     parser.add_argument("--train-fraction", type=float, default=0.80)
     parser.add_argument("--minority-threshold", type=float, default=0.20)
     parser.add_argument("--minority-min-count", type=int, default=2)
@@ -183,7 +184,7 @@ def main() -> None:
     root = args.root.resolve()
     raw = root / "data" / "raw"
     processed = root / "data" / "processed"
-    results = root / "results"
+    results = root / args.results_dir
     processed.mkdir(parents=True, exist_ok=True)
     results.mkdir(parents=True, exist_ok=True)
 
@@ -248,3 +249,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

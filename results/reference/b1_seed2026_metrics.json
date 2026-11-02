@@ -1,0 +1,67 @@
+{
+  "model": "B1",
+  "description": "shared learned projection + last-50 mean pooling + cosine",
+  "created_at_utc": "2026-10-30T14:08:42.416106+00:00",
+  "configuration": {
+    "seed": 2026,
+    "projection_dim": 64,
+    "max_history": 50,
+    "negatives": 4,
+    "batch_size": 1024,
+    "epochs": 5,
+    "patience": 2,
+    "learning_rate": 0.001,
+    "device": "cpu"
+  },
+  "embedding_cache": {
+    "created_at_utc": "2026-10-30T14:05:08.859854+00:00",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "text_template": "title [SEP] abstract; title only when abstract is blank",
+    "normalized": true,
+    "dtype": "float32",
+    "rows": 65238,
+    "dimension": 384,
+    "catalog_sha256": "0cae070c74993f774609063ab0834738d784029f3642b05375356b758d92c17d"
+  },
+  "training_samples": 187856,
+  "trainable_parameters": 24640,
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.4728611921486647,
+      "validation_ndcg_at_10": 0.36537296745386766
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.448152575155963,
+      "validation_ndcg_at_10": 0.3612108223973425
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.442606153047603,
+      "validation_ndcg_at_10": 0.36015803209802366
+    }
+  ],
+  "best_validation_ndcg_at_10": 0.36537296745386766,
+  "metrics": {
+    "validation": {
+      "impressions": 31393,
+      "ndcg_at_5": 0.30488879586059003,
+      "ndcg_at_10": 0.36537296745386766,
+      "recall_at_10": 0.6020464730663521,
+      "minority_recall_at_10_user_macro": 0.4959366722248889,
+      "minority_target_users": 6650,
+      "minority_positive_targets": 13779
+    },
+    "test": {
+      "impressions": 73152,
+      "ndcg_at_5": 0.32291533591234356,
+      "ndcg_at_10": 0.3865885320853063,
+      "recall_at_10": 0.6431858444046895,
+      "minority_recall_at_10_user_macro": 0.5445213120812236,
+      "minority_target_users": 15539,
+      "minority_positive_targets": 31126
+    }
+  },
+  "elapsed_seconds": 65.84815780003555
+}

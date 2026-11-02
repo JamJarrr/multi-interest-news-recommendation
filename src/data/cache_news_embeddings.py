@@ -28,6 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path("."))
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--revision", default=None)
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--device", default="cpu")
     return parser.parse_args()
@@ -50,7 +51,7 @@ def main() -> None:
         title if not abstract else f"{title} [SEP] {abstract}"
         for title, abstract in zip(catalog["title"], catalog["abstract"], strict=True)
     ]
-    model = SentenceTransformer(args.model, device=args.device)
+    model = SentenceTransformer(args.model, device=args.device, revision=args.revision)
     model.eval()
     embeddings = model.encode(
         texts,
@@ -72,6 +73,9 @@ def main() -> None:
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "model": args.model,
         "text_template": "title [SEP] abstract; title only when abstract is blank",
+        "resolved_revision": getattr(model[0].auto_model.config, "_commit_hash", None),
+        "embeddings_sha256": sha256(output_dir / "embeddings.npy"),
+        "catalog_content_sha256": hashlib.sha256(catalog.to_csv(index=False).encode("utf-8")).hexdigest(),
         "normalized": True,
         "dtype": str(embeddings.dtype),
         "rows": int(embeddings.shape[0]),
@@ -86,3 +90,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

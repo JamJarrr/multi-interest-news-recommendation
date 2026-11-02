@@ -1,0 +1,30 @@
+{
+  "MINDsmall_train.zip": {
+    "sha256": "a966e5138ad103376e9817e02395719bf1c62ec56e6e98c30d46fbb991a7fafa",
+    "bytes": 52953372,
+    "members": {
+      "news.tsv": {
+        "sha256": "cd49d7da275e9c405f627d75a0de9d4ec6ad43ff8a8db5d23a447591676e09d6",
+        "bytes": 41202121
+      },
+      "behaviors.tsv": {
+        "sha256": "a424547c8fa17c9ea4879c2110221c2b2f2709f4f7615ede0b0d8e4765158658",
+        "bytes": 92019716
+      }
+    }
+  },
+  "MINDsmall_dev.zip": {
+    "sha256": "b315cde1c9b9d45008b5a7c4b2e1f87647659f09f74892ae3899c0005d5d6155",
+    "bytes": 30946172,
+    "members": {
+      "news.tsv": {
+        "sha256": "e5d144667558c449d16084fe6bfa01940c2f5d5785ea9f9110292bc3b94eb822",
+        "bytes": 33519092
+      },
+      "behaviors.tsv": {
+        "sha256": "b6c460e33b1a8693252ded6e626da7d3ccf78920eea2ec11889020bb7d8443ef",
+        "bytes": 42838544
+      }
+    }
+  }
+}

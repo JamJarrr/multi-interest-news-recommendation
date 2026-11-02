@@ -1,0 +1,117 @@
+{
+  "configuration": {
+    "train_fraction": 0.8,
+    "minority_threshold": 0.2,
+    "minority_min_count": 2,
+    "validation_start_time": "2019-11-13T20:36:26"
+  },
+  "news": {
+    "rows": 65238,
+    "unique_news": 65238,
+    "duplicate_rows": 0,
+    "conflicting_news_ids": 0,
+    "categories": 18,
+    "subcategories": 270,
+    "missing_category": 0,
+    "missing_title": 0,
+    "missing_abstract": 3415
+  },
+  "splits": {
+    "train": {
+      "rows": 125572,
+      "unique_users": 45848,
+      "time_min": "2019-11-09T00:00:19",
+      "time_max": "2019-11-13T20:36:19",
+      "empty_history_rows": 2437,
+      "history_length": {
+        "min": 0,
+        "median": 19.0,
+        "mean": 32.39849648010703,
+        "p90": 77.0,
+        "p95": 108.0,
+        "max": 558
+      },
+      "candidate_length": {
+        "min": 2,
+        "median": 24.0,
+        "mean": 36.466656579492245,
+        "p90": 90.0,
+        "p95": 117.0,
+        "max": 299
+      },
+      "no_positive_rows": 0,
+      "multiple_positive_rows": 33822,
+      "positive_targets": 187856,
+      "minority_positive_targets": 49781,
+      "minority_positive_rate": 0.26499552848990715,
+      "impressions_with_minority_positive": 36251,
+      "unseen_positive_targets": 39807,
+      "missing_history_news_ids": 0,
+      "missing_candidate_news_ids": 0
+    },
+    "validation": {
+      "rows": 31393,
+      "unique_users": 20711,
+      "time_min": "2019-11-13T20:36:26",
+      "time_max": "2019-11-14T23:59:13",
+      "empty_history_rows": 801,
+      "history_length": {
+        "min": 0,
+        "median": 20.0,
+        "mean": 33.10594718567834,
+        "p90": 78.0,
+        "p95": 109.0,
+        "max": 558
+      },
+      "candidate_length": {
+        "min": 2,
+        "median": 26.0,
+        "mean": 40.27181218743032,
+        "p90": 97.0,
+        "p95": 123.0,
+        "max": 295
+      },
+      "no_positive_rows": 0,
+      "multiple_positive_rows": 9255,
+      "positive_targets": 48488,
+      "minority_positive_targets": 13779,
+      "minority_positive_rate": 0.28417340372875766,
+      "impressions_with_minority_positive": 9808,
+      "unseen_positive_targets": 11165,
+      "missing_history_news_ids": 0,
+      "missing_candidate_news_ids": 0
+    },
+    "test": {
+      "rows": 73152,
+      "unique_users": 50000,
+      "time_min": "2019-11-15T00:00:01",
+      "time_max": "2019-11-15T23:58:03",
+      "empty_history_rows": 2214,
+      "history_length": {
+        "min": 0,
+        "median": 19.0,
+        "mean": 32.29595909886264,
+        "p90": 78.0,
+        "p95": 108.0,
+        "max": 444
+      },
+      "candidate_length": {
+        "min": 2,
+        "median": 23.0,
+        "mean": 37.469898293963254,
+        "p90": 92.0,
+        "p95": 119.0,
+        "max": 295
+      },
+      "no_positive_rows": 0,
+      "multiple_positive_rows": 21085,
+      "positive_targets": 111383,
+      "minority_positive_targets": 31126,
+      "minority_positive_rate": 0.27945018539633515,
+      "impressions_with_minority_positive": 22062,
+      "unseen_positive_targets": 25556,
+      "missing_history_news_ids": 0,
+      "missing_candidate_news_ids": 0
+    }
+  }
+}

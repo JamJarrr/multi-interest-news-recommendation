@@ -28,6 +28,8 @@ from src.training.common import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path("."))
+    parser.add_argument("--results-dir", type=Path, default=Path("results"))
+    parser.add_argument("--checkpoint-dir", type=Path, default=Path("checkpoints"))
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--projection-dim", type=int, default=64)
     parser.add_argument("--max-history", type=int, default=50)
@@ -166,7 +168,7 @@ def main() -> None:
     if best_state is None:
         raise RuntimeError("No B1 checkpoint was produced")
     model.load_state_dict(best_state)
-    checkpoint = root / "checkpoints" / f"b1_seed{args.seed}.pt"
+    checkpoint = root / args.checkpoint_dir / f"b1_seed{args.seed}.pt"
     checkpoint.parent.mkdir(parents=True, exist_ok=True)
     torch.save(model.state_dict(), checkpoint)
 
@@ -178,7 +180,7 @@ def main() -> None:
         "description": "shared learned projection + last-50 mean pooling + cosine",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "configuration": {
-            key: value for key, value in vars(args).items() if key != "root"
+            key: value for key, value in vars(args).items() if key not in ("root", "results_dir", "checkpoint_dir")
         },
         "embedding_cache": cache_metadata,
         "training_samples": int(len(user_means)),
@@ -188,9 +190,10 @@ def main() -> None:
         "metrics": {"validation": validation_metrics, "test": test_metrics},
         "elapsed_seconds": time.perf_counter() - started,
     }
-    write_json(root / "results" / f"b1_seed{args.seed}_metrics.json", payload)
+    write_json(root / args.results_dir / f"b1_seed{args.seed}_metrics.json", payload)
     print(payload["metrics"])
 
 
 if __name__ == "__main__":
     main()
+

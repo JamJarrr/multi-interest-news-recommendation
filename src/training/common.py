@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 
 import numpy as np
@@ -30,6 +31,22 @@ def load_embedding_cache(root: Path) -> tuple[np.ndarray, dict[str, int], dict]:
         metadata = json.load(stream)
     if len(news_ids) != len(embeddings):
         raise ValueError("Embedding cache and news ID index have different lengths")
+    if embeddings.ndim != 2 or not np.isfinite(embeddings).all():
+        raise ValueError("Invalid embedding matrix")
+    if len(set(news_ids)) != len(news_ids):
+        raise ValueError("Duplicate news IDs in cache")
+    catalog = load_catalog(root)
+    if catalog["news_id"].tolist() != news_ids:
+        raise ValueError("News catalog and cache ID order differ")
+    if metadata.get("catalog_content_sha256"):
+        content = hashlib.sha256(catalog.to_csv(index=False).encode("utf-8")).hexdigest()
+        if content != metadata["catalog_content_sha256"]:
+            raise ValueError("Catalog content changed after embedding generation")
+    if metadata.get("embeddings_sha256"):
+        with (cache / "embeddings.npy").open("rb") as stream:
+            actual = hashlib.file_digest(stream, "sha256").hexdigest()
+        if actual != metadata["embeddings_sha256"]:
+            raise ValueError("Embedding file checksum changed")
     return embeddings, {news_id: index for index, news_id in enumerate(news_ids)}, metadata
 
 
@@ -50,3 +67,4 @@ def write_json(path: Path, payload: dict) -> None:
     with path.open("w", encoding="utf-8") as stream:
         json.dump(payload, stream, ensure_ascii=False, indent=2)
         stream.write("\n")
+
