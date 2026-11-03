@@ -13,6 +13,7 @@ from src.training.common import load_behaviors, write_json
 from src.training.interest_data import index_impressions
 from src.training.predict_interests import predict, predict_b0
 from src.training.run_interests import prepare, load_checkpoint, save_predictions, fingerprint
+from scripts.artifact_guard import verify_cached_result
 
 
 def select_cohort(frame, category, pool_max_history=50):
@@ -94,6 +95,10 @@ def main():
                 local = root / "results/runs" / args.run / "controlled" / tag
                 users_path = local / f"{design_tag}_users.npz"
                 if result_path.exists() and users_path.exists():
+                    verify_cached_result(
+                        result_path, identity, model=name, training_seed=seed,
+                        sampling_seed=sampling_seed, dominant_percent=ratio,
+                    )
                     continue
                 if name == "b0":
                     predictions = predict_b0(embeddings_np, indexed)

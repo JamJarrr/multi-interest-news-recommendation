@@ -38,3 +38,11 @@ results/runs/**
 Thumbs.db
 .idea/
 .vscode/
+
+# LaTeX build intermediates
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc

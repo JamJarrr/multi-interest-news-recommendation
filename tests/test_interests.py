@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -14,6 +15,7 @@ from src.models.baselines import SharedProjection
 from src.models.interests import build_model
 from src.training.interest_data import index_impressions, sample_training
 from src.training.train_b1 import build_training_arrays
+from scripts.artifact_guard import verify_cached_result, verify_existing_artifacts
 
 
 class ModelTests(unittest.TestCase):
@@ -111,6 +113,30 @@ class DataTests(unittest.TestCase):
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_cached_result_must_match_identity_and_variant(self):
+        identity = {"configuration_sha256": "expected"}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            out = root / "results/experiments/run"
+            out.mkdir(parents=True)
+            (out / "protocol.json").write_text(
+                json.dumps({"identity": identity}), encoding="utf-8"
+            )
+            path = out / "b3_k4_seed42_test.json"
+            path.write_text(json.dumps({
+                "identity": identity, "model": "b3_k4", "seed": 42,
+                "split": "test",
+            }), encoding="utf-8")
+            verified = verify_cached_result(
+                path, identity, model="b3_k4", seed=42, split="test"
+            )
+            self.assertEqual(verified["model"], "b3_k4")
+            self.assertEqual(verify_existing_artifacts(root, "run"), 1)
+            with self.assertRaises(ValueError):
+                verify_cached_result(path, {"configuration_sha256": "stale"})
+            with self.assertRaises(ValueError):
+                verify_cached_result(path, identity, model="b2")
+
     def test_user_macro_does_not_weight_active_users_more(self):
         category={"a":"A","b":"B"}
         candidates="a-1 "+" ".join(["b-0"]*11)

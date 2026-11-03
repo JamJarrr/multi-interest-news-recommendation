@@ -5,6 +5,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from artifact_guard import verify_existing_artifacts
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -12,6 +14,9 @@ def main():
     parser.add_argument("--stage", choices=("all", "train", "evaluate", "controlled", "summarize"), default="all")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
+    verified = verify_existing_artifacts(root, args.run)
+    if verified:
+        print(f"Verified {verified} cached result identities", flush=True)
     logdir = root / "results/runs" / args.run
     logdir.mkdir(parents=True, exist_ok=True)
     stages = {

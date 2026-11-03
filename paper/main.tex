@@ -1,0 +1,287 @@
+\begin{filecontents*}{references.bib}
+@inproceedings{wu2020mind,
+  title={MIND: A Large-scale Dataset for News Recommendation},
+  author={Wu, Fangzhao and Qiao, Ying and Chen, Jiun-Hung and Wu, Chuhan and Qi, Tao and Lian, Jianxun and Liu, Danyang and Xie, Xing and Gao, Jianfeng and Wu, Winnie and Zhou, Ming},
+  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},
+  pages={3597--3606}, year={2020}, doi={10.18653/v1/2020.acl-main.331}}
+@inproceedings{wu2019nrms,
+  title={Neural News Recommendation with Multi-Head Self-Attention},
+  author={Wu, Chuhan and Wu, Fangzhao and Ge, Suyu and Qi, Tao and Huang, Yongfeng and Xie, Xing},
+  booktitle={Proceedings of EMNLP-IJCNLP}, pages={6389--6394}, year={2019},
+  doi={10.18653/v1/D19-1671}}
+@inproceedings{cen2020comirec,
+  title={Controllable Multi-Interest Framework for Recommendation},
+  author={Cen, Yukuo and Zhang, Jianwei and Zou, Xu and Zhou, Chang and Yang, Hongxia and Tang, Jie},
+  booktitle={Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+  pages={2942--2951}, year={2020}, doi={10.1145/3394486.3403344}}
+@inproceedings{reimers2019sbert,
+  title={Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks},
+  author={Reimers, Nils and Gurevych, Iryna}, booktitle={Proceedings of EMNLP-IJCNLP},
+  pages={3982--3992}, year={2019}, doi={10.18653/v1/D19-1410}}
+@inproceedings{wang2020minilm,
+  title={MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers},
+  author={Wang, Wenhui and Wei, Furu and Dong, Li and Bao, Hangbo and Yang, Nan and Zhou, Ming},
+  booktitle={Advances in Neural Information Processing Systems}, volume={33},
+  pages={5776--5788}, year={2020}}
+@article{lloyd1982,
+  title={Least Squares Quantization in PCM}, author={Lloyd, Stuart P.},
+  journal={IEEE Transactions on Information Theory}, volume={28}, number={2},
+  pages={129--137}, year={1982}, doi={10.1109/TIT.1982.1056489}}
+@inproceedings{kingma2015adam,
+  title={Adam: A Method for Stochastic Optimization},
+  author={Kingma, Diederik P. and Ba, Jimmy},
+  booktitle={International Conference on Learning Representations}, year={2015}}
+@article{efron1979bootstrap,
+  title={Bootstrap Methods: Another Look at the Jackknife}, author={Efron, Bradley},
+  journal={The Annals of Statistics}, volume={7}, number={1},
+  pages={1--26}, year={1979}, doi={10.1214/aos/1176344552}}
+\end{filecontents*}
+
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{tgheros}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{setspace}
+\setstretch{1.05}
+\setlength{\emergencystretch}{2em}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{SC4001 Group Project}
+\fancyhead[R]{Multi-Interest News Recommendation}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setcounter{tocdepth}{2}
+\newcommand{\best}[1]{\textbf{#1}}
+\newcommand{\ci}[2]{[#1,\,#2]}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{2.2cm}
+{\Large SC4001 Neural Networks and Deep Learning\par}
+\vspace{1.0cm}
+{\huge\bfseries Discovering Minority Interests in News Recommendation\par}
+\vspace{0.35cm}
+{\Large From Attention Collapse to Semantic Interest Clustering\par}
+\vspace{1.8cm}
+{\large Group Project Report\par}
+\vfill
+\begin{tabular}{ll}
+\textbf{Group number:} & [Insert group number]\\
+\textbf{Member 1:} & [Name and student ID]\\
+\textbf{Member 2:} & [Name and student ID]\\
+\end{tabular}
+\vfill
+School of Computer Science and Engineering\\
+Nanyang Technological University, Singapore\\
+November 2026
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\begin{abstract}
+A single user vector can be dominated by frequently read topics and may under-represent smaller but persistent interests. We study whether multiple user-interest vectors improve minority-interest retrieval on MINDsmall while preserving overall ranking quality. Under a shared frozen sentence encoder and identical candidate scoring, conventional learned multi-head attention does not discover distinct interests: its heads collapse to almost identical vectors and its minority Recall@10 is statistically indistinguishable from single attention. We then replace unconstrained heads with semantic spherical $K$-means assignments over a user's history. Hard clustering improves minority Recall@10 by 0.0146 over mean pooling and by 0.0091 over random grouping while maintaining NDCG@10. A differentiable soft-clustering extension raises minority recall further but introduces a small ranking-quality trade-off; an auxiliary masked-history objective gives no reliable additional gain. Controlled 80:20 and 90:10 histories confirm that semantic separation, rather than temperature alone or extra parameters, exposes minority preferences.
+\end{abstract}
+
+\section{AI Use Statement}
+OpenAI Codex was used for brainstorming, code debugging, experiment organization, result summarization, and language editing. The team verified references against the original papers, tested generated code, checked every reported value against machine-readable result files, and reviewed confidence intervals and plots. The team chose the research question, designed and ran the experiments, selected the final model, and interpreted the results. B0--B4 were evaluated under the original locked protocol. Because those test results were inspected before the clustering extensions were designed, all later hard-, soft-, and masked-clustering test analyses are explicitly exploratory; each extension was nevertheless fixed using validation before its test run.
+
+\section{Introduction}
+News histories are often imbalanced: a user may mostly read one topic while maintaining a smaller interest in another. Mean pooling compresses all clicks into one vector, so the dominant topic can suppress this minority signal. Multi-interest recommendation instead represents a user with several vectors and matches a candidate against the most relevant one \cite{cen2020comirec}. We ask: \emph{When a user's history is strongly imbalanced, do multiple interest vectors retain minority preferences better than a single representation?}
+
+We make three contributions. First, we implement controlled single- and multi-interest baselines under one frozen content encoder and one evaluation protocol. Second, we diagnose why learned multi-head attention fails: nearly identical heads reveal representation collapse, and temperature or overlap penalties do not create specialization. Third, we introduce per-user semantic clustering. Hard clustering gives the best balance of ranking quality, interpretability, and robustness; soft clustering is a recall-focused extension.
+
+\subsection{Research Hypotheses}
+We test three hypotheses. \textbf{H1}: a multi-interest representation improves minority Recall@10 over a single representation when histories are imbalanced. \textbf{H2}: any gain is caused by distinct semantic interests rather than extra parameters or taking a maximum over arbitrary vectors. \textbf{H3}: the gain grows as the minority share falls from 50\% to 20\% or 10\%. H1 is tested by B3 and the clustering models; H2 by B4 and random grouping; H3 by controlled histories.
+
+\section{Related Work}
+MIND provides English news text, topic metadata, user click histories, and impression-level candidate sets \cite{wu2020mind}. NRMS uses attention to encode clicked news into a user representation \cite{wu2019nrms}, while multi-interest recommenders such as ComiRec model behavior with several vectors \cite{cen2020comirec}. Our setting freezes content embeddings to isolate user modeling and explicitly evaluates low-frequency history categories. Each title and abstract are concatenated and encoded with all-MiniLM-L6-v2, a Sentence-BERT style encoder \cite{reimers2019sbert} whose compact Transformer lineage follows MiniLM \cite{wang2020minilm}. Semantic grouping uses Lloyd-style $K$-means \cite{lloyd1982} on normalized embeddings.
+
+\section{Method}
+\subsection{Shared Pipeline}
+A frozen encoder maps each concatenated title and abstract to a normalized vector $\mathbf{x}_i\in\mathbb{R}^{384}$. When an abstract is missing, only the title is encoded, and at most the 50 most recent clicks are retained. B1--B4 share a learned 384-to-64 projection. Hard clustering instead operates directly on frozen 384-dimensional vectors; Soft-$K$ uses a trainable 384-dimensional residual adapter. Let $\mathbf{v}_i$ denote the normalized candidate representation in the relevant branch. For interest vectors $\{\mathbf{u}_k\}_{k=1}^{K}$, every multi-interest branch uses
+\begin{equation}
+s(i\mid u)=\max_{k\leq K}\mathbf{u}_k^\top\mathbf{v}_i .
+\end{equation}
+Trained variants use impression-based cross-entropy, one positive and four sampled negatives, Adam-family optimization \cite{kingma2015adam}, and validation early stopping.
+
+\begin{figure}[t]
+\centering
+\setlength{\fboxsep}{5pt}
+\fbox{\parbox{0.16\textwidth}{\centering News text\\Title + abstract\\Frozen MiniLM}}
+$\longrightarrow$
+\fbox{\parbox{0.19\textwidth}{\centering Branch transform\\B1--B4: 384$\to$64\\Hard: identity\\Soft: residual adapter}}
+$\longrightarrow$
+\fbox{\parbox{0.25\textwidth}{\centering User modeling\\B0/B1: mean\\B2/B3: attention\\Ours: hard/soft clusters}}
+$\longrightarrow$
+\fbox{\parbox{0.16\textwidth}{\centering Matching\\$\max_k \mathbf{u}_k^\top\mathbf{v}_i$}}
+\caption{Model branches share the frozen content encoder, data splits, candidate sets, and cosine/max scoring rule. Their representation transform and history aggregation differ as shown.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Baselines and Learned Multi-Interest Models}
+B0 averages frozen history embeddings. B1 applies the projection before averaging. B2 learns one additive-attention vector. B3 learns $K\in\{2,4\}$ attention heads, while B4 is a capacity-matched single-interest control. These models separate effects from projection, parameter count, and multiple representations.
+
+\begin{table}[t]
+\centering
+\caption{Controlled model family. Counts exclude the frozen content encoder.}
+\label{tab:models}
+\small
+\begin{tabular}{lrl}
+\toprule
+Model & Parameters & Purpose\\
+\midrule
+B0 mean & 0 & Non-trained reference\\
+B1 projected mean & 24,640 & Projection control\\
+B2 single attention & 24,704 & Single-interest baseline\\
+B3, $K=2$ & 24,768 & Two learned interests\\
+B3, $K=4$ & 24,896 & Four learned interests\\
+B4 capacity control & 24,899 & One interest, matched capacity\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Semantic Interest Discovery}
+Independent queries do not force different heads to represent different topics. For \textbf{Hard-$K$}, normalized history embeddings are partitioned by spherical $K$-means and each interest vector is a cluster mean. For \textbf{Soft-$K$}, assignments are differentiable:
+\begin{equation}
+a_{tk}=\frac{\exp(\tau\,\widetilde{\mathbf{x}}_t^\top\mathbf{c}_k)}
+{\sum_j\exp(\tau\,\widetilde{\mathbf{x}}_t^\top\mathbf{c}_j)},\quad
+\mathbf{u}_k=\frac{\sum_t a_{tk}\widetilde{\mathbf{x}}_t}{\sum_t a_{tk}} .
+\end{equation}
+Here $\widetilde{\mathbf{x}}$ is the normalized output of a zero-initialized 384-to-16-to-384 residual adapter. We use $K=4$, $\tau=10$, three refinement iterations, and train the adapter at $10^{-5}$. We also test a masked-history auxiliary loss ($\lambda=0.1$) that predicts one hidden click among four in-batch negatives.
+
+\section{Experimental Protocol}
+We use MINDsmall. The official training period is split chronologically: the earlier 80\% is training and later 20\% is validation; official development impressions are held out as test. This gives 125,572 training, 31,393 validation, and 73,152 test impressions. B0--B4 form the original locked comparison. The subsequent clustering family was motivated after its test results had been observed, so its reported test outcomes are exploratory rather than an independent confirmatory evaluation. Within every later extension, settings and checkpoints were still selected on validation before that extension's test stage. All variants reuse the same cached title-and-abstract vectors, split, last-50 histories, and full evaluation candidate sets.
+
+Training uses batch size 1024, AdamW learning rate $10^{-3}$, weight decay 0.01, at most 20 epochs, and patience 3. Validation NDCG@10 is the only early-stopping criterion. Learned extensions use seeds 42, 2026, and 3407.
+
+NDCG@10 is the primary overall ranking metric; NDCG@5 and Recall@10 are complementary metrics. Minority Recall@10 measures retrieval for low-frequency history categories. If $R_u^{min}$ is the relevant minority set and $L_u^{10}$ is the top-10 list,
+\begin{equation}
+\mathrm{MinorityRecall@10}(u)=
+\frac{|R_u^{min}\cap L_u^{10}|}{|R_u^{min}|}.
+\end{equation}
+A category is a minority interest when it occurs at least twice and forms at most 20\% of visible history; 10\% and 30\% are sensitivity checks. At the 20\% threshold, evaluation covers 15,539 users, 22,062 impressions, and 31,126 positive minority targets, corresponding to 31.1\% of test users and 30.2\% of test impressions. Paired user-level bootstrap intervals quantify uncertainty \cite{efron1979bootstrap}. Controlled evaluation constructs 50:50, 80:20, and 90:10 two-interest histories. Category grouping is a metadata-informed diagnostic reference, not a directly comparable content-only model.
+
+\section{Results and Analysis}
+\subsection{Learned Heads Do Not Discover Interests}
+Table~\ref{tab:main} shows that B2, B3, and B4 are nearly identical. B3-$K4$ changes NDCG@10 over B2 by only 0.000253 and minority Recall@10 by 0.000114, whose 95\% interval crosses zero. Mean pairwise head cosine is 0.9998, so four nominal heads behave as one representation. Increasing attention-logit scale from 1 to 8 or 32 and adding overlap penalty 0.1 gives no stable improvement. Temperature changes sharpness but does not tell heads which different interests to own.
+
+\begin{table}[t]
+\centering
+\caption{Test performance. Learned models use three training seeds; random grouping uses three grouping seeds. Min-R@10 denotes user-macro minority Recall@10.}
+\label{tab:main}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Method & NDCG@5 & NDCG@10 & Recall@10 & Min-R@10\\
+\midrule
+B0 mean & 0.332024 & 0.391786 & 0.638582 & 0.537949\\
+B1 projected mean & 0.322597 & 0.386853 & 0.643809 & 0.544669\\
+B2 attention & 0.322476 & 0.386777 & 0.643820 & 0.544610\\
+B3 attention, $K=2$ & 0.322599 & 0.386876 & 0.643925 & 0.544449\\
+B3 attention, $K=4$ & 0.322745 & 0.387030 & 0.644116 & 0.544724\\
+B4 capacity control & 0.321565 & 0.386046 & 0.643828 & 0.545238\\
+\midrule
+Random groups, $K=4$ & 0.328637 & 0.389353 & 0.638039 & 0.543408\\
+\best{Hard semantic clusters} & \best{0.332056} & \best{0.392557} & 0.640464 & 0.552499\\
+Soft semantic clusters & 0.328055 & 0.390537 & \best{0.647379} & 0.560759\\
+Soft + masked objective & 0.328066 & 0.390582 & 0.647370 & 0.561026\\
+Category groups (reference) & 0.330270 & 0.391739 & 0.641318 & \best{0.569800}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Semantic Clustering Recovers Minority Signal}
+Hard clustering improves minority Recall@10 over B0 by 0.014550, 95\% CI \ci{0.009769}{0.019376}; its NDCG@10 difference is 0.000772, CI \ci{-0.000570}{0.002262}. Against random grouping, Hard-$K4$ improves NDCG@10 by 0.003204, CI \ci{0.002057}{0.004412}, and minority recall by 0.009091, CI \ci{0.005208}{0.012932}. Thus the gain comes from meaningful semantic partitioning rather than four arbitrary averages.
+
+Mechanism diagnostics agree. Hard-$K4$ activates 3.87 slots per user on average, reduces pairwise centroid cosine from 0.303 for random groups to 0.111, and increases category purity from 0.446 to 0.547. Its clusters are both used and more distinct. The top-10 minority-category share rises from 0.2506 for B0 to 0.2628 for Hard-$K4$, remaining close to the candidate-pool share of 0.2684 rather than indiscriminately flooding the ranking with minority categories.
+
+\begin{table}[t]
+\centering
+\caption{Paired test differences with 95\% user-bootstrap confidence intervals.}
+\label{tab:effects}
+\small
+\begin{tabular}{llrr}
+\toprule
+Comparison & Metric & Difference & 95\% CI\\
+\midrule
+B3-$K4$ $-$ B2 & NDCG@10 & +0.000253 & [+.000149,+.000357]\\
+B3-$K4$ $-$ B2 & Min-R@10 & +0.000114 & [-.000313,+.000541]\\
+Hard-$K4$ $-$ B0 & NDCG@10 & +0.000772 & [-.000570,+.002262]\\
+Hard-$K4$ $-$ B0 & Min-R@10 & +0.014550 & [+.009769,+.019376]\\
+Hard-$K4$ $-$ random & NDCG@10 & +0.003204 & [+.002057,+.004412]\\
+Hard-$K4$ $-$ random & Min-R@10 & +0.009091 & [+.005208,+.012932]\\
+Soft-$K4$ $-$ B0 & Min-R@10 & +0.022810 & [+.017855,+.027788]\\
+Masked $-$ Soft & Min-R@10 & +0.000268 & [-.001045,+.001664]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Controlled Imbalance and Extensions}
+Table~\ref{tab:controlled} isolates the minority interest. Hard-$K4$ is not better for balanced 50:50 histories, but gives large gains at 80:20 and 90:10. Multiple vectors matter most when averaging dilutes a smaller mode.
+
+\begin{table}[t]
+\centering
+\caption{Minority Recall@10 gain over B0 on controlled histories.}
+\label{tab:controlled}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & 50:50 & 80:20 & 90:10\\
+\midrule
+Hard-$K4$ & -0.00514 & \best{+0.07661} & \best{+0.04974}\\
+95\% CI & [-.016,.006] & [.059,.095] & [.031,.070]\\
+Soft-$K4$ & -- & +0.06984 & +0.04952\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Soft clustering raises minority Recall@10 over B0 by 0.022810, CI \ci{0.017855}{0.027788}, but changes NDCG@10 by -0.001249, CI \ci{-0.002781}{0.000294}. Relative to Hard-$K4$, it gains 0.008259 minority recall but loses 0.002021 NDCG@10. It is therefore a recall-oriented operating point, not an unqualified replacement. Masked-history training changes minority recall by only 0.000268 relative to Soft-$K4$, CI \ci{-0.001045}{0.001664}; we reject it as the final model.
+
+\subsection{Failure Analysis and Model Selection}
+The sequence separates a failed idea from a failed research question. B3 rejects the assumption that several learned queries automatically become several interests. Attention scales 1, 8, and 32 test whether assignments are merely too smooth; their unchanged outcome shows that sharpness is insufficient. An overlap penalty directly discourages head similarity but gives no consistent validation gain. Category grouping then demonstrates that separating history groups can improve minority recall, motivating content-based semantic clustering without category labels. Hard clustering succeeds against B0 and random grouping, so it is selected as the main model. Soft clustering remains an extension because its additional recall carries a ranking trade-off. The masked objective is a negative ablation because its confidence interval includes zero.
+
+\subsection{Answer to the Research Question}
+The answer is conditional. Multiple vectors do not automatically preserve minority preferences: unconstrained attention heads collapse. They help when an explicit specialization mechanism is present. Semantic clustering supplies that mechanism, and its advantage over mean pooling and random grouping is strongest under controlled imbalance. Hard-$K4$ is our primary model because it improves minority retrieval without a reliable NDCG loss and has the clearest diagnostics. Category grouping remains stronger in minority recall, showing that content-only discovery does not fully recover topic supervision.
+
+\section{Reproducibility and Team Contributions}
+The environment is Python 3.11 with PyTorch 2.6.0 and CUDA 12.4. Main experiments ran on an RTX 4060 Laptop GPU with 8 GB VRAM. With cached news vectors, the B1--B4 training and validation runs took 5.8--7.5 seconds on average and peaked at approximately 355--358 MB of allocated CUDA memory. The repository records exact dependencies in \texttt{requirements-lock.txt}, data and cache fingerprints, seeds, checkpoints, validation trajectories, per-user predictions, and compact summaries. From the repository root, the complete result sequence is:
+\begin{verbatim}
+python -m unittest discover -s tests -v
+python scripts/run_pipeline.py
+python scripts/verify_experiment.py
+python -m experiments.clustering validate
+python -m experiments.clustering evaluate
+python -m experiments.controlled_clustering
+python -m experiments.soft_clustering_final train
+python -m experiments.soft_clustering_final evaluate
+python -m experiments.soft_clustering_final summarize
+python -m experiments.controlled_soft_clustering_final
+python -m experiments.masked_history_final train
+python -m experiments.masked_history_final evaluate
+python -m experiments.masked_history_final summarize
+\end{verbatim}
+Hard-clustering summary commands, data preparation, and embedding-cache commands are in \texttt{README.md}. Before submission, replace the cover placeholders with the group number, both member names, and student IDs. Following the project plan, Member A was responsible for data loading, chronological splitting, data auditing, news-vector caching, B0, and B1. Member B was responsible for B2, B3, B4, the training scripts, and attention diagnostics. Both members jointly completed the controlled imbalance experiments, statistical analysis, figures, report, and reproduction notes. Replace Member A and Member B with the actual names before submission.
+
+\section{Limitations and Responsible Interpretation}
+The category-based minority label is a proxy for preference. MINDsmall is an offline click dataset; improved recall does not establish satisfaction, diversity exposure, or reduced filter bubbles. The frozen encoder limits adaptation, while the category reference uses metadata unavailable to content-only models. Bootstrap intervals quantify sampled-user uncertainty but not distribution shift.
+
+\section{Conclusion}
+The central problem is not selecting a sharper attention temperature; it is creating identifiable, non-collapsed interests. Learned heads without specialization behave like one vector. Semantic clustering supplies the missing inductive bias and reliably improves minority retrieval, especially for 80:20 and 90:10 histories. Hard-$K4$ is the recommended final model, Soft-$K4$ documents the ranking--recall trade-off, and the masked objective is retained as a negative ablation.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}
