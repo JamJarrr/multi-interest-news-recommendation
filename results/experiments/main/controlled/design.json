@@ -1,0 +1,27 @@
+{
+  "history_length": 20,
+  "pool_max_history": 50,
+  "sampling_seeds": [
+    11,
+    29,
+    47
+  ],
+  "dominant_counts": [
+    10,
+    16,
+    18
+  ],
+  "target_counts": [
+    10,
+    4,
+    2
+  ],
+  "category_selection": "two most frequent categories in the last 50, ties by category name; designate the less frequent as target; require >=18 dominant and >=10 target before looking at candidate labels",
+  "metric": "target_category_recall_at_10_user_macro (fixed target, including at 50:50; not the natural <=20% minority definition)",
+  "source_test_impressions": 73152,
+  "eligible_impressions": 3210,
+  "eligible_users": 1580,
+  "impression_coverage": 0.043881233595800526,
+  "cohort_impression_ids_sha256": "24de8640eeb179dc9c7fa7abb08b32b6eabf075c4373c1ec504ae3649dd5e71f",
+  "limitations": "Restricted to histories with enough examples of both categories; fixed target category is not necessarily a natural <=20% minority. This is a history intervention on observed clicks, not a causal user study."
+}

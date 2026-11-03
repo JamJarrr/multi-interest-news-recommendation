@@ -1,0 +1,103 @@
+{
+  "model": "b0",
+  "seed": null,
+  "split": "validation",
+  "metrics": {
+    "impressions": 31393,
+    "unique_users": 20711,
+    "positive_targets": 48488,
+    "no_positive_impressions": 0,
+    "empty_history_impressions": 801,
+    "ndcg_at_5": 0.31390927446794126,
+    "ndcg_at_10": 0.3730039950519531,
+    "recall_at_10": 0.6073807585409521,
+    "minority_recall_at_10_user_macro": 0.5022644400488566,
+    "minority_target_users": 6650,
+    "minority_positive_targets": 13779,
+    "minority_impressions": 9808,
+    "top10_minority_share": 0.24309774964838257,
+    "sensitivity": {
+      "10": {
+        "recall_at_10_user_macro": 0.4458601109448199,
+        "target_users": 3453,
+        "positive_targets": 6252,
+        "eligible_impressions": 4886,
+        "recommended_targets": 31364,
+        "candidate_targets": 176067,
+        "user_coverage": 0.1667229974409734,
+        "impression_coverage": 0.15563979231038766,
+        "positive_target_coverage": 0.12893911895726778,
+        "top10_category_share": 0.11028129395218003,
+        "candidate_category_share": 0.1392656374950267
+      },
+      "20": {
+        "recall_at_10_user_macro": 0.5022644400488566,
+        "target_users": 6650,
+        "positive_targets": 13779,
+        "eligible_impressions": 9808,
+        "recommended_targets": 69137,
+        "candidate_targets": 346221,
+        "user_coverage": 0.32108541354835596,
+        "impression_coverage": 0.31242633708151496,
+        "positive_target_coverage": 0.28417340372875766,
+        "top10_category_share": 0.24309774964838257,
+        "candidate_category_share": 0.27385420481501727
+      },
+      "30": {
+        "recall_at_10_user_macro": 0.5398355346691084,
+        "target_users": 8654,
+        "positive_targets": 19109,
+        "eligible_impressions": 13028,
+        "recommended_targets": 98380,
+        "candidate_targets": 453143,
+        "user_coverage": 0.4178455893003718,
+        "impression_coverage": 0.41499697384767303,
+        "positive_target_coverage": 0.394097508661937,
+        "top10_category_share": 0.3459212376933896,
+        "candidate_category_share": 0.3584274666542219
+      }
+    }
+  },
+  "attention_diagnostics": {},
+  "identity": {
+    "configuration_sha256": "5e7cc0b5a0e56d9550bc02bf6dadd3adb63a449daed09156295346d6010aa424",
+    "embedding_cache": {
+      "created_at_utc": "2026-10-31T17:47:39.602462+00:00",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "text_template": "title [SEP] abstract; title only when abstract is blank",
+      "resolved_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "embeddings_sha256": "02eb86de40b30d30f68acaad4655f5a5e07fa82640abe30d9d7a73af1915a151",
+      "catalog_content_sha256": "c78e07ac715e97263da15a3871d03b1a0dc1b3cdde913c2f0839c58cfc467d12",
+      "normalized": true,
+      "dtype": "float32",
+      "rows": 65238,
+      "dimension": 384,
+      "catalog_sha256": "f83ff59df3a2c2c7995496a24f4ac7b6418c5d71f1474113f43fdd91b9082dc2"
+    },
+    "train_sha256": "d566b6512549cfe4e1fb6e12205e2a217cad076166e98e846c75f24a874d092a",
+    "validation_sha256": "a448c2322a3667cfedb7095b2bccf30553ae57ae1506f6fafb1483af8b6124d1",
+    "test_sha256": "f35ef6399b26b94ab6082998493b9cd475711b52e5a201c2a825ccb0011b8302",
+    "source_sha256": {
+      "src/__init__.py": "a97d963cd0c9b1ac10c4c048410cd80d04a6d688b12705cb554a79a85645cb45",
+      "src/data/__init__.py": "b8b0cd459c938845c560a8b868a026eed584744668ca75d4d3be614e02720ed3",
+      "src/data/cache_news_embeddings.py": "f53e233a7c2af37db5aec64ce66dcebc05afff0b4068cdf1274149b68f93b953",
+      "src/data/mind_io.py": "918a2259e2c4e0c07c6021570ca1625654c5dd0e418262eeca7a01ce49316341",
+      "src/data/prepare_mind.py": "4e8d9ac5f20ba3f8fb1b0fa95ea205320ebc174781c8401f610643b405e1d551",
+      "src/evaluation/__init__.py": "e86360f2ba5f1362567172ab163a2b45c6e8f528c98b88d6433a25e33e0c752f",
+      "src/evaluation/detailed.py": "6c57423436eed1766bb1a8a621eeeaf4016753d0f12d73b25febfd5322b48498",
+      "src/evaluation/ranking.py": "828b5fff252a8b634676f61b62a98a2aef1032b405e19261d42af5764cc45c87",
+      "src/evaluation/summarize_b1.py": "43a9968077f94bda4519f758b2ffcaa098e40cb5ad235841d5d0dc7941bea662",
+      "src/models/__init__.py": "f81f0e5197efd945a0c1c7f719347bff41b1e62e388b1015407a5bc21ee7d3db",
+      "src/models/baselines.py": "5e6947c11a963893349396e8f6a5f87a9fcae3af0a8b2e88a6c3e82c644e8efc",
+      "src/models/interests.py": "22306a4194949e7d63c846bc366fd908ccb6962e7218b09a61d2bf14486df747",
+      "src/training/__init__.py": "5acfa55e035247af75984580ad2bf8069d2c4502ab9651977c0dc7203aed93f0",
+      "src/training/common.py": "1ccf5efb8162727334d6309a106e6261172aa7732af9fe20dded33bdc23904f0",
+      "src/training/interest_data.py": "e01d1fe6ccfe6635749bdc69d15aaeeea4b9baa8a0d8ead631ff5694378ef035",
+      "src/training/predict_interests.py": "80d6b7fef969d33d80df8393a55a8ef47bb5171098694399d80b490c7ab48809",
+      "src/training/run_b0.py": "f88f19d748f5193b24c81b2cb4d857f0118eb42c4d305bdb14c66d5a86a4ea93",
+      "src/training/run_interests.py": "0cc98f9cecf3928f4f03084b0f0c2017501b44745d18080a0ad03bdad4850d41",
+      "src/training/train_b1.py": "eacec5ad9cf5d345661ee282f805863d8ec262bd2c3eaf5285b3f9b70986eb6f"
+    }
+  },
+  "evaluation_seconds": 4.857109859993216
+}

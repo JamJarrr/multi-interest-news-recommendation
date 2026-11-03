@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "trained_checkpoints_checked": 15,
+  "natural_evaluation_files": 32,
+  "controlled_evaluation_files": 144,
+  "raw_predictions_rescored": 480,
+  "maximum_rescored_absolute_difference": 2.384185791015625e-07,
+  "source_data_cache_identity": "matches locked protocol",
+  "aggregate_seed_means_and_sample_standard_deviations": "verified",
+  "original_audit": "identical",
+  "baseline_reproduction_tolerance": 0.0001,
+  "behavior_and_statistics_tests": 13
+}

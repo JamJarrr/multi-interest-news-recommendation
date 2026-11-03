@@ -1,0 +1,62 @@
+{
+  "protocol_version": 1,
+  "models": [
+    "b1",
+    "b2",
+    "b3_k2",
+    "b3_k4",
+    "b4"
+  ],
+  "seeds": [
+    42,
+    2026,
+    3407
+  ],
+  "projection_dim": 64,
+  "max_history": 50,
+  "negatives": 4,
+  "batch_size": 1024,
+  "epochs": 20,
+  "patience": 3,
+  "learning_rate": 0.001,
+  "weight_decay": 0.01,
+  "optimizer": "AdamW",
+  "temperature": 1,
+  "device": "cuda",
+  "threads": 4,
+  "eval_batch_size": 256,
+  "selection_metric": "validation_ndcg_at_10",
+  "minority_history_scope": "full pre-impression history, matching existing B0/B1 evaluator",
+  "minority_thresholds": [
+    0.1,
+    0.2,
+    0.3
+  ],
+  "minority_min_count": 2,
+  "bootstrap_samples": 1000,
+  "bootstrap_seed": 8675309,
+  "controlled": {
+    "history_length": 20,
+    "pool_max_history": 50,
+    "sampling_seeds": [
+      11,
+      29,
+      47
+    ],
+    "dominant_counts": [
+      10,
+      16,
+      18
+    ],
+    "target_counts": [
+      10,
+      4,
+      2
+    ],
+    "category_selection": "two most frequent categories in the last 50, ties by category name; designate the less frequent as target; require >=18 dominant and >=10 target before looking at candidate labels",
+    "metric": "target_category_recall_at_10_user_macro (fixed target, including at 50:50; not the natural <=20% minority definition)"
+  },
+  "decision": "Configuration fixed before any new attention-model test evaluation; all seeds and both K values retained; no test-based selection.",
+  "b4": "Single 64-d interest, residual tanh attention scorer width 3; 24899 parameters vs B3 K4 24896 (0.0121% difference)."
+}
+
