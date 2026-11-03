@@ -1,0 +1,130 @@
+{
+  "selection": "semantic_k4, locked on validation",
+  "models": {
+    "b0": {
+      "ndcg_at_10": {
+        "value": 0.3917857371464699,
+        "ci95": [
+          0.38925516287955075,
+          0.39441601250863395
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5379491782569994,
+        "ci95": [
+          0.5310033587277513,
+          0.5449549236888194
+        ]
+      }
+    },
+    "category_groups": {
+      "ndcg_at_10": {
+        "value": 0.3917390442651985,
+        "ci95": [
+          0.3892752829122162,
+          0.3942313660363616
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5698003592832198,
+        "ci95": [
+          0.5629891719003925,
+          0.5763793297145563
+        ]
+      }
+    },
+    "semantic_k4": {
+      "ndcg_at_10": {
+        "value": 0.3925573990118932,
+        "ci95": [
+          0.39007338808338543,
+          0.3950970077772479
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5524992413751035,
+        "ci95": [
+          0.5457252122486745,
+          0.5595984640235192
+        ]
+      }
+    },
+    "random_k4": {
+      "ndcg_at_10": {
+        "value": 0.38935341467715806,
+        "ci95": [
+          0.3869366116353831,
+          0.3917704791732313
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5434079933962337,
+        "ci95": [
+          0.5372889511358242,
+          0.5498110675442707
+        ]
+      }
+    }
+  },
+  "paired_differences": {
+    "semantic_k4_minus_b0": {
+      "ndcg_at_10": {
+        "difference": 0.0007716618654232676,
+        "ci95": [
+          -0.0005704681091149577,
+          0.0022617383306240747
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": 0.01455006311810414,
+        "ci95": [
+          0.009768771507785521,
+          0.019375510433647887
+        ]
+      }
+    },
+    "semantic_k4_minus_random_k4": {
+      "ndcg_at_10": {
+        "difference": 0.0032039843347351216,
+        "ci95": [
+          0.0020566977296360674,
+          0.004412335692482703
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": 0.009091247978869843,
+        "ci95": [
+          0.005207842543431873,
+          0.012932289921470429
+        ]
+      }
+    },
+    "semantic_k4_minus_category_groups": {
+      "ndcg_at_10": {
+        "difference": 0.0008183547466946717,
+        "ci95": [
+          -0.0004689598947945295,
+          0.0020440332959375017
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": -0.01730111790811628,
+        "ci95": [
+          -0.022019761545675896,
+          -0.012544699715154059
+        ]
+      }
+    }
+  },
+  "interpretation": "Exploratory because earlier project work had already inspected the test split.",
+  "diagnostics": {
+    "method": "semantic",
+    "clusters": 4,
+    "nonempty_histories": 70938,
+    "mean_active_slots": 3.8700837350926163,
+    "mean_pairwise_centroid_cosine": 0.11111435054936183,
+    "mean_assigned_item_centroid_cosine": 0.5080766348265656,
+    "category_purity": 0.5471209571611865,
+    "category_labels_used_for_scoring": false
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "name": "k4_a1_d0.1_seed2026",
+  "split": "test",
+  "identity": {
+    "base": {
+      "configuration_sha256": "5e7cc0b5a0e56d9550bc02bf6dadd3adb63a449daed09156295346d6010aa424",
+      "embedding_cache": {
+        "created_at_utc": "2026-10-31T17:47:39.602462+00:00",
+        "model": "sentence-transformers/all-MiniLM-L6-v2",
+        "text_template": "title [SEP] abstract; title only when abstract is blank",
+        "resolved_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "embeddings_sha256": "02eb86de40b30d30f68acaad4655f5a5e07fa82640abe30d9d7a73af1915a151",
+        "catalog_content_sha256": "c78e07ac715e97263da15a3871d03b1a0dc1b3cdde913c2f0839c58cfc467d12",
+        "normalized": true,
+        "dtype": "float32",
+        "rows": 65238,
+        "dimension": 384,
+        "catalog_sha256": "f83ff59df3a2c2c7995496a24f4ac7b6418c5d71f1474113f43fdd91b9082dc2"
+      },
+      "train_sha256": "d566b6512549cfe4e1fb6e12205e2a217cad076166e98e846c75f24a874d092a",
+      "validation_sha256": "a448c2322a3667cfedb7095b2bccf30553ae57ae1506f6fafb1483af8b6124d1",
+      "test_sha256": "f35ef6399b26b94ab6082998493b9cd475711b52e5a201c2a825ccb0011b8302",
+      "source_sha256": {
+        "src/__init__.py": "a97d963cd0c9b1ac10c4c048410cd80d04a6d688b12705cb554a79a85645cb45",
+        "src/data/__init__.py": "b8b0cd459c938845c560a8b868a026eed584744668ca75d4d3be614e02720ed3",
+        "src/data/cache_news_embeddings.py": "f53e233a7c2af37db5aec64ce66dcebc05afff0b4068cdf1274149b68f93b953",
+        "src/data/mind_io.py": "918a2259e2c4e0c07c6021570ca1625654c5dd0e418262eeca7a01ce49316341",
+        "src/data/prepare_mind.py": "4e8d9ac5f20ba3f8fb1b0fa95ea205320ebc174781c8401f610643b405e1d551",
+        "src/evaluation/__init__.py": "e86360f2ba5f1362567172ab163a2b45c6e8f528c98b88d6433a25e33e0c752f",
+        "src/evaluation/detailed.py": "6c57423436eed1766bb1a8a621eeeaf4016753d0f12d73b25febfd5322b48498",
+        "src/evaluation/ranking.py": "828b5fff252a8b634676f61b62a98a2aef1032b405e19261d42af5764cc45c87",
+        "src/evaluation/summarize_b1.py": "43a9968077f94bda4519f758b2ffcaa098e40cb5ad235841d5d0dc7941bea662",
+        "src/models/__init__.py": "f81f0e5197efd945a0c1c7f719347bff41b1e62e388b1015407a5bc21ee7d3db",
+        "src/models/baselines.py": "5e6947c11a963893349396e8f6a5f87a9fcae3af0a8b2e88a6c3e82c644e8efc",
+        "src/models/interests.py": "22306a4194949e7d63c846bc366fd908ccb6962e7218b09a61d2bf14486df747",
+        "src/training/__init__.py": "5acfa55e035247af75984580ad2bf8069d2c4502ab9651977c0dc7203aed93f0",
+        "src/training/common.py": "1ccf5efb8162727334d6309a106e6261172aa7732af9fe20dded33bdc23904f0",
+        "src/training/interest_data.py": "e01d1fe6ccfe6635749bdc69d15aaeeea4b9baa8a0d8ead631ff5694378ef035",
+        "src/training/predict_interests.py": "80d6b7fef969d33d80df8393a55a8ef47bb5171098694399d80b490c7ab48809",
+        "src/training/run_b0.py": "f88f19d748f5193b24c81b2cb4d857f0118eb42c4d305bdb14c66d5a86a4ea93",
+        "src/training/run_interests.py": "0cc98f9cecf3928f4f03084b0f0c2017501b44745d18080a0ad03bdad4850d41",
+        "src/training/train_b1.py": "eacec5ad9cf5d345661ee282f805863d8ec262bd2c3eaf5285b3f9b70986eb6f"
+      }
+    },
+    "followup_sources": {
+      "experiments/followup.py": "89a290b857c677c0dff5fd036a02c228ce1b542a493b7d837ab15ef38b413647",
+      "experiments/followup_models.py": "123bbe924ae6962738baf5cd94609ee020a90fa7a586c2288648b0d784cdbe2c",
+      "src/evaluation/controlled.py": "bc2fc837cf1cc8fb1532a000e7e8a819b5fab1a06e0ebf338b120ee7af44f686"
+    }
+  },
+  "metrics": {
+    "impressions": 73152,
+    "unique_users": 50000,
+    "positive_targets": 111383,
+    "no_positive_impressions": 0,
+    "empty_history_impressions": 2214,
+    "ndcg_at_5": 0.32297032316491114,
+    "ndcg_at_10": 0.3867111894609146,
+    "recall_at_10": 0.6436641927156328,
+    "minority_recall_at_10_user_macro": 0.5449491716489892,
+    "minority_target_users": 15539,
+    "minority_positive_targets": 31126,
+    "minority_impressions": 22062,
+    "top10_minority_share": 0.2483095497436023,
+    "sensitivity": {
+      "10": {
+        "recall_at_10_user_macro": 0.47694591354273974,
+        "target_users": 7840,
+        "positive_targets": 13867,
+        "eligible_impressions": 10569,
+        "recommended_targets": 73655,
+        "candidate_targets": 383501,
+        "user_coverage": 0.1568,
+        "impression_coverage": 0.14447998687664043,
+        "positive_target_coverage": 0.12449835253135577,
+        "top10_category_share": 0.11267883586875375,
+        "candidate_category_share": 0.13991290763437259
+      },
+      "20": {
+        "recall_at_10_user_macro": 0.5449491716489892,
+        "target_users": 15539,
+        "positive_targets": 31126,
+        "eligible_impressions": 22062,
+        "recommended_targets": 162313,
+        "candidate_targets": 735713,
+        "user_coverage": 0.31078,
+        "impression_coverage": 0.30159120734908135,
+        "positive_target_coverage": 0.27945018539633515,
+        "top10_category_share": 0.2483095497436023,
+        "candidate_category_share": 0.26841062999681137
+      },
+      "30": {
+        "recall_at_10_user_macro": 0.5907199189635577,
+        "target_users": 20757,
+        "positive_targets": 43961,
+        "eligible_impressions": 30209,
+        "recommended_targets": 228667,
+        "candidate_targets": 956914,
+        "user_coverage": 0.41514,
+        "impression_coverage": 0.41296205161854765,
+        "positive_target_coverage": 0.3946832101846781,
+        "top10_category_share": 0.34981917536623874,
+        "candidate_category_share": 0.3491115279908997
+      }
+    }
+  },
+  "last50_metrics": {
+    "impressions": 73152,
+    "unique_users": 50000,
+    "positive_targets": 111383,
+    "no_positive_impressions": 0,
+    "empty_history_impressions": 2214,
+    "ndcg_at_5": 0.32297032316491114,
+    "ndcg_at_10": 0.3867111894609146,
+    "recall_at_10": 0.6436641927156328,
+    "minority_recall_at_10_user_macro": 0.5478545105831965,
+    "minority_target_users": 15338,
+    "minority_positive_targets": 29632,
+    "minority_impressions": 21459,
+    "top10_minority_share": 0.23511485882828084,
+    "sensitivity": {
+      "10": {
+        "recall_at_10_user_macro": 0.4801193866148249,
+        "target_users": 7563,
+        "positive_targets": 12769,
+        "eligible_impressions": 9971,
+        "recommended_targets": 67076,
+        "candidate_targets": 338037,
+        "user_coverage": 0.15126,
+        "impression_coverage": 0.13630522747156607,
+        "positive_target_coverage": 0.11464047475826653,
+        "top10_category_share": 0.10261415511143203,
+        "candidate_category_share": 0.12332624832269122
+      },
+      "20": {
+        "recall_at_10_user_macro": 0.5478545105831965,
+        "target_users": 15338,
+        "positive_targets": 29632,
+        "eligible_impressions": 21459,
+        "recommended_targets": 153688,
+        "candidate_targets": 682456,
+        "user_coverage": 0.30676,
+        "impression_coverage": 0.2933480971128609,
+        "positive_target_coverage": 0.2660370074427875,
+        "top10_category_share": 0.23511485882828084,
+        "candidate_category_share": 0.24898084566278414
+      },
+      "30": {
+        "recall_at_10_user_macro": 0.5934976261186906,
+        "target_users": 20642,
+        "positive_targets": 42304,
+        "eligible_impressions": 29710,
+        "recommended_targets": 220024,
+        "candidate_targets": 900927,
+        "user_coverage": 0.41284,
+        "impression_coverage": 0.40614063867016625,
+        "positive_target_coverage": 0.3798066132174569,
+        "top10_category_share": 0.3365969477046592,
+        "candidate_category_share": 0.32868575606403216
+      }
+    }
+  },
+  "diagnostics": {
+    "nonempty_history_impressions": 70938,
+    "winning_head_candidate_counts": [
+      357679,
+      81513,
+      1236566,
+      982333
+    ],
+    "winning_head_fractions": [
+      0.13456236073181843,
+      0.030665993000239644,
+      0.46520830174738187,
+      0.36956334452056006
+    ],
+    "attention_entropy_nats": 2.819071602393166,
+    "mean_pairwise_attention_cosine": 0.9997427683673265,
+    "mean_pairwise_interest_cosine": 0.9997093333830714,
+    "definition": "Winning heads counted over all valid candidates of nonempty-history impressions; ties use the first head.",
+    "histories_longer_than_one": 69861,
+    "normalized_attention_entropy": 0.9999567270278931,
+    "total_variation_from_uniform": 0.005075681023299694,
+    "mean_attention_logit_range": 0.04530596733093262
+  }
+}

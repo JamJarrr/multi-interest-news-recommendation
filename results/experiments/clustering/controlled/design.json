@@ -1,0 +1,15 @@
+{
+  "impressions": 3210,
+  "users": 1580,
+  "sampling_seeds": [
+    11,
+    29,
+    47
+  ],
+  "dominant_counts": [
+    10,
+    16,
+    18
+  ],
+  "cohort_sha256": "24de8640eeb179dc9c7fa7abb08b32b6eabf075c4373c1ec504ae3649dd5e71f"
+}

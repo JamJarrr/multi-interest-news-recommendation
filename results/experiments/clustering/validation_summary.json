@@ -1,0 +1,238 @@
+{
+  "models": {
+    "b0": {
+      "ndcg_at_10": {
+        "value": 0.3730039950519531,
+        "ci95": [
+          0.36939722124993235,
+          0.3768267598854686
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5022644400488566,
+        "ci95": [
+          0.49122109362911304,
+          0.5122140788556404
+        ]
+      },
+      "diagnostics": {}
+    },
+    "category_groups": {
+      "ndcg_at_10": {
+        "value": 0.3710431810307824,
+        "ci95": [
+          0.36740320270340526,
+          0.37493191435096873
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5373893993068497,
+        "ci95": [
+          0.5257156832681691,
+          0.5482995934041331
+        ]
+      },
+      "diagnostics": {
+        "uses_history_categories_for_scoring": true
+      }
+    },
+    "semantic_k2": {
+      "ndcg_at_10": {
+        "value": 0.37208507851024375,
+        "ci95": [
+          0.36854594400145213,
+          0.37606340093342827
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5155517980936636,
+        "ci95": [
+          0.5048957684572114,
+          0.5258375697115472
+        ]
+      },
+      "diagnostics": {
+        "method": "semantic",
+        "clusters": 2,
+        "nonempty_histories": 30592,
+        "mean_active_slots": 1.9859767259414225,
+        "mean_pairwise_centroid_cosine": 0.15266070249938565,
+        "mean_assigned_item_centroid_cosine": 0.41088055546208324,
+        "category_purity": 0.456470825521051,
+        "category_labels_used_for_scoring": false
+      }
+    },
+    "semantic_k4": {
+      "ndcg_at_10": {
+        "value": 0.3726810645835916,
+        "ci95": [
+          0.3690574721608412,
+          0.37660159171870466
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5279563316709723,
+        "ci95": [
+          0.5171870689426049,
+          0.5377198640102843
+        ]
+      },
+      "diagnostics": {
+        "method": "semantic",
+        "clusters": 4,
+        "nonempty_histories": 30592,
+        "mean_active_slots": 3.8746731171548117,
+        "mean_pairwise_centroid_cosine": 0.11227125035419623,
+        "mean_assigned_item_centroid_cosine": 0.5067850126295972,
+        "category_purity": 0.5470229730859411,
+        "category_labels_used_for_scoring": false
+      }
+    },
+    "random_k2": {
+      "ndcg_at_10": {
+        "value": 0.37228473161375636,
+        "ci95": [
+          0.36876972345493664,
+          0.3759827825524972
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5058742970857487,
+        "ci95": [
+          0.4949393466190436,
+          0.5157726481997188
+        ]
+      },
+      "diagnostics": {
+        "mean_pairwise_centroid_cosine": 0.44231730350390636,
+        "mean_assigned_item_centroid_cosine": 0.38175319224582327,
+        "category_purity": 0.40561546630645023
+      }
+    },
+    "random_k4": {
+      "ndcg_at_10": {
+        "value": 0.37177057052072754,
+        "ci95": [
+          0.36838164782543065,
+          0.3755104412089917
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "value": 0.5125628887994166,
+        "ci95": [
+          0.5020376914848127,
+          0.5216162919939269
+        ]
+      },
+      "diagnostics": {
+        "mean_pairwise_centroid_cosine": 0.3062989210483918,
+        "mean_assigned_item_centroid_cosine": 0.45688087423468104,
+        "category_purity": 0.4477542425171273
+      }
+    }
+  },
+  "paired_differences": {
+    "semantic_k2_minus_b0": {
+      "ndcg_at_10": {
+        "difference": -0.0009189165417093359,
+        "ci95": [
+          -0.002699820596484438,
+          0.0006569932418007108
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": 0.013287358044806963,
+        "ci95": [
+          0.007663337546125507,
+          0.019459769195096347
+        ]
+      }
+    },
+    "semantic_k2_minus_random_k2": {
+      "ndcg_at_10": {
+        "difference": -0.00019965310351260923,
+        "ci95": [
+          -0.0017242503113280197,
+          0.0012077582960860866
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": 0.009677501007914868,
+        "ci95": [
+          0.004217518605323489,
+          0.015412189003544043
+        ]
+      }
+    },
+    "semantic_k2_minus_category_groups": {
+      "ndcg_at_10": {
+        "difference": 0.0010418974794613733,
+        "ci95": [
+          -0.0008664251182855229,
+          0.0031370025036447035
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": -0.02183760121318612,
+        "ci95": [
+          -0.029688593170579432,
+          -0.013418138792250121
+        ]
+      }
+    },
+    "semantic_k4_minus_b0": {
+      "ndcg_at_10": {
+        "difference": -0.0003229304683614598,
+        "ci95": [
+          -0.002326946883976863,
+          0.0017035422184174984
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": 0.025691891622115715,
+        "ci95": [
+          0.018101659026609734,
+          0.03341008735405035
+        ]
+      }
+    },
+    "semantic_k4_minus_random_k4": {
+      "ndcg_at_10": {
+        "difference": 0.0009104940628640867,
+        "ci95": [
+          -0.0006633393730268805,
+          0.0024664008728864355
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": 0.015393442871555751,
+        "ci95": [
+          0.008696210483777033,
+          0.021793738881671108
+        ]
+      }
+    },
+    "semantic_k4_minus_category_groups": {
+      "ndcg_at_10": {
+        "difference": 0.0016378835528092495,
+        "ci95": [
+          -0.000248953570704509,
+          0.003505143471121127
+        ]
+      },
+      "minority_recall_at_10_user_macro": {
+        "difference": -0.009433067635877368,
+        "ci95": [
+          -0.016628559563092678,
+          -0.0020689628345844585
+        ]
+      }
+    }
+  },
+  "bootstrap": {
+    "unit": "user",
+    "samples": 1000,
+    "seed": 8675309,
+    "random_controls": "user measures averaged over three grouping seeds"
+  }
+}

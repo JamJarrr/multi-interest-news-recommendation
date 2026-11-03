@@ -1,0 +1,8 @@
+{
+  "locked_at_utc": "2026-11-01T06:08:26.758736+00:00",
+  "rule": "Among semantic K=2,4 within absolute 0.001 validation NDCG@10 of B0, maximize validation minority Recall@10.",
+  "selected": "semantic_k4",
+  "matched_random_control": "random_k4",
+  "test_status": "evaluated_exploratory",
+  "test_summary": "results/experiments/clustering/test_summary.json"
+}

@@ -1,0 +1,120 @@
+{
+  "identity": {
+    "base": {
+      "configuration_sha256": "5e7cc0b5a0e56d9550bc02bf6dadd3adb63a449daed09156295346d6010aa424",
+      "embedding_cache": {
+        "created_at_utc": "2026-10-31T17:47:39.602462+00:00",
+        "model": "sentence-transformers/all-MiniLM-L6-v2",
+        "text_template": "title [SEP] abstract; title only when abstract is blank",
+        "resolved_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "embeddings_sha256": "02eb86de40b30d30f68acaad4655f5a5e07fa82640abe30d9d7a73af1915a151",
+        "catalog_content_sha256": "c78e07ac715e97263da15a3871d03b1a0dc1b3cdde913c2f0839c58cfc467d12",
+        "normalized": true,
+        "dtype": "float32",
+        "rows": 65238,
+        "dimension": 384,
+        "catalog_sha256": "f83ff59df3a2c2c7995496a24f4ac7b6418c5d71f1474113f43fdd91b9082dc2"
+      },
+      "train_sha256": "d566b6512549cfe4e1fb6e12205e2a217cad076166e98e846c75f24a874d092a",
+      "validation_sha256": "a448c2322a3667cfedb7095b2bccf30553ae57ae1506f6fafb1483af8b6124d1",
+      "test_sha256": "f35ef6399b26b94ab6082998493b9cd475711b52e5a201c2a825ccb0011b8302",
+      "source_sha256": {
+        "src/__init__.py": "a97d963cd0c9b1ac10c4c048410cd80d04a6d688b12705cb554a79a85645cb45",
+        "src/data/__init__.py": "b8b0cd459c938845c560a8b868a026eed584744668ca75d4d3be614e02720ed3",
+        "src/data/cache_news_embeddings.py": "f53e233a7c2af37db5aec64ce66dcebc05afff0b4068cdf1274149b68f93b953",
+        "src/data/mind_io.py": "918a2259e2c4e0c07c6021570ca1625654c5dd0e418262eeca7a01ce49316341",
+        "src/data/prepare_mind.py": "4e8d9ac5f20ba3f8fb1b0fa95ea205320ebc174781c8401f610643b405e1d551",
+        "src/evaluation/__init__.py": "e86360f2ba5f1362567172ab163a2b45c6e8f528c98b88d6433a25e33e0c752f",
+        "src/evaluation/detailed.py": "6c57423436eed1766bb1a8a621eeeaf4016753d0f12d73b25febfd5322b48498",
+        "src/evaluation/ranking.py": "828b5fff252a8b634676f61b62a98a2aef1032b405e19261d42af5764cc45c87",
+        "src/evaluation/summarize_b1.py": "43a9968077f94bda4519f758b2ffcaa098e40cb5ad235841d5d0dc7941bea662",
+        "src/models/__init__.py": "f81f0e5197efd945a0c1c7f719347bff41b1e62e388b1015407a5bc21ee7d3db",
+        "src/models/baselines.py": "5e6947c11a963893349396e8f6a5f87a9fcae3af0a8b2e88a6c3e82c644e8efc",
+        "src/models/interests.py": "22306a4194949e7d63c846bc366fd908ccb6962e7218b09a61d2bf14486df747",
+        "src/training/__init__.py": "5acfa55e035247af75984580ad2bf8069d2c4502ab9651977c0dc7203aed93f0",
+        "src/training/common.py": "1ccf5efb8162727334d6309a106e6261172aa7732af9fe20dded33bdc23904f0",
+        "src/training/interest_data.py": "e01d1fe6ccfe6635749bdc69d15aaeeea4b9baa8a0d8ead631ff5694378ef035",
+        "src/training/predict_interests.py": "80d6b7fef969d33d80df8393a55a8ef47bb5171098694399d80b490c7ab48809",
+        "src/training/run_b0.py": "f88f19d748f5193b24c81b2cb4d857f0118eb42c4d305bdb14c66d5a86a4ea93",
+        "src/training/run_interests.py": "0cc98f9cecf3928f4f03084b0f0c2017501b44745d18080a0ad03bdad4850d41",
+        "src/training/train_b1.py": "eacec5ad9cf5d345661ee282f805863d8ec262bd2c3eaf5285b3f9b70986eb6f"
+      }
+    },
+    "sources": {
+      "experiments/soft_clustering_final.py": "070cdb999449cee661291558579b44160b6dc1ff50a9743ae6e4b0cdd00aa92b",
+      "experiments/soft_clustering_models.py": "a5182548e02698343d7bfc6e3a3bc32a9d2247c357d2f15a0e893234c1bcad22"
+    }
+  },
+  "seed": 42,
+  "split": "sample11_ratio90",
+  "metrics": {
+    "impressions": 3210,
+    "unique_users": 1580,
+    "positive_targets": 5803,
+    "no_positive_impressions": 0,
+    "empty_history_impressions": 0,
+    "ndcg_at_5": 0.32739731634459196,
+    "ndcg_at_10": 0.3897401386496435,
+    "recall_at_10": 0.6280933258503352,
+    "minority_recall_at_10_user_macro": 0.5334134615384616,
+    "minority_target_users": 832,
+    "minority_positive_targets": 1432,
+    "minority_impressions": 1158,
+    "top10_minority_share": 0.18302997496447662,
+    "sensitivity": {
+      "10": {
+        "recall_at_10_user_macro": 0.5334134615384616,
+        "target_users": 832,
+        "positive_targets": 1432,
+        "eligible_impressions": 1158,
+        "recommended_targets": 5410,
+        "candidate_targets": 21670,
+        "user_coverage": 0.5265822784810127,
+        "impression_coverage": 0.36074766355140186,
+        "positive_target_coverage": 0.24676891263139755,
+        "top10_category_share": 0.18302997496447662,
+        "candidate_category_share": 0.15950242897099956
+      },
+      "20": {
+        "recall_at_10_user_macro": 0.5334134615384616,
+        "target_users": 832,
+        "positive_targets": 1432,
+        "eligible_impressions": 1158,
+        "recommended_targets": 5410,
+        "candidate_targets": 21670,
+        "user_coverage": 0.5265822784810127,
+        "impression_coverage": 0.36074766355140186,
+        "positive_target_coverage": 0.24676891263139755,
+        "top10_category_share": 0.18302997496447662,
+        "candidate_category_share": 0.15950242897099956
+      },
+      "30": {
+        "recall_at_10_user_macro": 0.5334134615384616,
+        "target_users": 832,
+        "positive_targets": 1432,
+        "eligible_impressions": 1158,
+        "recommended_targets": 5410,
+        "candidate_targets": 21670,
+        "user_coverage": 0.5265822784810127,
+        "impression_coverage": 0.36074766355140186,
+        "positive_target_coverage": 0.24676891263139755,
+        "top10_category_share": 0.18302997496447662,
+        "candidate_category_share": 0.15950242897099956
+      },
+      "target": {
+        "recall_at_10_user_macro": 0.5334134615384616,
+        "target_users": 832,
+        "positive_targets": 1432,
+        "eligible_impressions": 1158,
+        "recommended_targets": 5410,
+        "candidate_targets": 21670,
+        "user_coverage": 0.5265822784810127,
+        "impression_coverage": 0.36074766355140186,
+        "positive_target_coverage": 0.24676891263139755,
+        "top10_category_share": 0.18302997496447662,
+        "candidate_category_share": 0.15950242897099956
+      }
+    },
+    "target_category_recall_at_10_user_macro": 0.5334134615384616
+  }
+}

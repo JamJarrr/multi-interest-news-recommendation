@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "selected_checkpoints": 9,
+  "natural_files": 27,
+  "controlled_files": 99,
+  "rescored_impressions": 320,
+  "maximum_score_difference": 2.384185791015625e-07,
+  "original_source_data_cache_fingerprint": "unchanged",
+  "scale1_zero_penalty_baselines": "exact original metrics",
+  "selection_rule": "recomputed from validation-only screening",
+  "full_and_last50_aggregates": "verified from user records",
+  "controlled_cohort": "exact original cohort and 832 target users"
+}
